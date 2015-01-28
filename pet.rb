@@ -34,8 +34,9 @@ if response == "u"
   id = gets.chomp.to_i
   puts "what is the pet's new name?"
   new_name = gets.chomp
-  db.execute("UPDATE pets SET name = #{new_name} WHERE ID = #{id}")
+  db.execute("UPDATE pets SET name = ? WHERE ID = ?", new_name, id)
   update_pet = db.execute("SELECT * FROM pets WHERE ID = #{id}")
+  puts "Pet ID: " + update_pet[0][0].to_s + " has an updated name: " + update_pet[0][1]
 end
 
 if response == "d"
